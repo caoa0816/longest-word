@@ -17,7 +17,7 @@ class TestGame:
         game.grid = test_grid
         assert game.grid == test_grid
         test_word_one = ""
-        assert game.is_valid(test_word_one.upper()) == False
+        assert game.is_valid(test_word_one.upper()) is False
 
     def test_word_validity(self):
 
@@ -28,10 +28,15 @@ class TestGame:
 
         #edge case 1: not all letters within a word are in the grid
         test_word_two = "samantha"
-        assert game.is_valid(test_word_two.upper()) == False
+        assert game.is_valid(test_word_two.upper()) is False
 
         #edge case 2: all letters within the word are in the grid
         test_word_three = "baroque"
         test_word_four = "bower"
-        assert game.is_valid(test_word_three.upper()) == True
-        assert game.is_valid(test_word_four.upper()) == True
+        assert game.is_valid(test_word_three.upper()) is True
+        assert game.is_valid(test_word_four.upper()) is True
+
+    def test_unknown_word_is_valid(self):
+        new_game = Game()
+        new_game.grid = list('KWIENFUQW')
+        assert new_game.is_valid('FEUN') is False
